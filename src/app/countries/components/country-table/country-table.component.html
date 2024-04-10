@@ -18,12 +18,14 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody>s
     <tr *ngFor="let country of countries; let i = index">
       <td>{{i+1}}</td>
       <td>{{country.flag}}</td>
       <td><img [src]="country.flags.svg" [alt]="country.name.common"></td>
-      <td></td>
+      <td>{{country}}</td>
+      <td>{{country.capital}}</td>
+      <td>{{country.population}}</td>
     </tr>
   </tbody>
   </table>

@@ -15,9 +15,11 @@ export class CountriesService {
 
     return this.http.get<Country[]>(url)
     .pipe(
-      catchError(() => of([]))
+      catchError(() => of([])),
+     // delay(2000),
       );
   }
+
 
   searchCountryByAlphaCode(code: string): Observable<Country | null>{
     const url = `${this.apiURL}/alpha/${code}`;
@@ -27,7 +29,7 @@ export class CountriesService {
    .pipe(
       map(countries => countries.length > 0 ? countries[0]: null),
       catchError(() => of(null)),
-      delay(2000)
+
    );
   }
 

@@ -18,14 +18,17 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>s
+  <tbody>
     <tr *ngFor="let country of countries; let i = index">
       <td>{{i+1}}</td>
       <td>{{country.flag}}</td>
       <td><img [src]="country.flags.svg" [alt]="country.name.common"></td>
-      <td>{{country}}</td>
+      <td>{{country.name.common}}</td>
       <td>{{country.capital}}</td>
-      <td>{{country.population}}</td>
+      <td>{{country.population | number}}</td> <!--con un | es para decir que melo muestre en modo numero-->
+      <td>
+        <a [routerLink]="['/countries/by', country.cca3]">Info</a> <!--Aqui la , es para contatenar el string con el parametro-->
+      </td>
     </tr>
   </tbody>
   </table>
@@ -33,7 +36,4 @@
 
 
 </ng-template>
-<!--
-<ul>
-  <li *ngFor="let country of countries">{{country.capital}} - {{country.population}}</li>
-</ul>-->
+

@@ -18,16 +18,19 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
   @Input()
   public placeholder: string='';
 
+  @Input()
+  public initialValue: string ='';
+
   @Output() // para poder hacer emited
   public onValue = new EventEmitter<string>();
 
   @Output()// este se usa en el ngoinit siguiente
   public onDebounce = new EventEmitter<string>();
 
-
+//siempre que tengamos subscripciones hay que hacer una limpieza, sino siempre va a estar escuchando aunque no se necesite
 
   ngOnInit(): void {
-    this.debouncer
+    this.debouncerSuscription = this.debouncer
     .pipe(
       debounceTime(300),
     )
@@ -35,7 +38,7 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(): void {
-  this.debouncer.unsubscribe();
+  this.debouncerSuscription?.unsubscribe();
   }
 
 
@@ -51,3 +54,4 @@ export class SearchBoxComponent implements OnInit, OnDestroy{
   }
 
 }
+
